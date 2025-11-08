@@ -1,8 +1,0 @@
-[24-May-2024 10:23:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home/zoudpnt7/healthacademy.ca/wp-admin/includes/admin.php:16
-Stack trace:
-#0 {main}
-  thrown in /home/zoudpnt7/healthacademy.ca/wp-admin/includes/admin.php on line 16
-[17-Jun-2024 15:08:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home/zoudpnt7/healthacademy.ca/wp-admin/includes/admin.php:16
-Stack trace:
-#0 {main}
-  thrown in /home/zoudpnt7/healthacademy.ca/wp-admin/includes/admin.php on line 16

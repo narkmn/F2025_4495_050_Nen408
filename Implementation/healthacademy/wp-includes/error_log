@@ -1,4 +1,0 @@
-[24-May-2024 10:23:04 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "ABSPATH" in /home/zoudpnt7/healthacademy.ca/wp-includes/class-IXR.php:42
-Stack trace:
-#0 {main}
-  thrown in /home/zoudpnt7/healthacademy.ca/wp-includes/class-IXR.php on line 42
