@@ -1,0 +1,68 @@
+/* Tailwind v4 import */
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-rubik), sans-serif;
+}
+
+/* ─────────────────────────────────────────── */
+/*  GLOBAL FONT VARIABLES (from layout.tsx)     */
+/* ─────────────────────────────────────────── */
+:root {
+  --font-rubik: var(--font-rubik); /* Next.js Google Font */
+  --font-inter: var(--font-inter); /* Local Inter */
+  --font-playfair: var(--font-playfair); /* Local Playfair */
+}
+
+/* ─────────────────────────────────────────── */
+/*  DEFAULT FONT — use Rubik everywhere         */
+/* ─────────────────────────────────────────── */
+@layer base {
+  body {
+    font-family: var(--font-rubik);
+  }
+}
+
+/* ─────────────────────────────────────────── */
+/*  OPTIONAL FONT UTILITIES                     */
+/* ─────────────────────────────────────────── */
+@layer utilities {
+  .font-rubik {
+    font-family: var(--font-rubik);
+  }
+
+  .font-inter {
+    font-family: var(--font-inter);
+  }
+
+  .font-playfair {
+    font-family: var(--font-playfair);
+  }
+}
+
+/* ─────────────────────────────────────────── */
+/*    COLORS FROM YOUR WP THEME                 */
+/* ─────────────────────────────────────────── */
+.text-green {
+  color: #467326;
+}
+
+.bg-green {
+  background-color: #467326;
+}
+
+.text-green-hover:hover {
+  color: #47894B;
+}
+
+.border-green {
+  border-color: #467326;
+}
+
+/* ─────────────────────────────────────────── */
+/*   UTILITY FOR HERO BG BLUR                   */
+/* ─────────────────────────────────────────── */
+.hero-bg-blur {
+  filter: blur(3px);
+  transform: scale(1.05);
+}
