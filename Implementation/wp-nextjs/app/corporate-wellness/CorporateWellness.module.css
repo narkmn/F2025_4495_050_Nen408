@@ -1,0 +1,390 @@
+.page {
+  background-color: #ffffff;
+}
+
+/* 1. HERO ------------------------------------------------------ */
+
+.heroSection {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+
+  background-image: url("/blueberries.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
+.heroOverlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.92),
+    rgba(255, 255, 255, 0.75)
+  );
+}
+
+.heroInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 16px 70px 16px;
+}
+
+.heroTitle {
+  font-size: 52px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 22px;
+}
+
+.heroText {
+  max-width: 680px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.heroButton {
+  margin-top: 26px;
+  padding: 12px 30px;
+  border-radius: 4px;
+  border: none;
+  background-color: #3e7d24;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.heroButton:hover {
+  background-color: #35691f;
+}
+
+/* 2. WHY WORKSHOPS WORK --------------------------------------- */
+
+.whySection {
+  max-width: 1200px;
+  margin: 70px auto 60px auto;
+  padding: 0 16px;
+}
+
+.whyHeader {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.whyTitle {
+  font-size: 40px;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 8px;
+}
+
+.whySubtitle {
+  font-size: 16px;
+  color: #555555;
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.whyCard {
+  background-color: #f8faf7;
+  border-radius: 6px;
+  padding: 24px 26px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.iconCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background-color: #3e7d24;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.whyCardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222222;
+}
+
+.whyCardText {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555555;
+}
+
+/* 3. WORKSHOPS SECTION ---------------------------------------- */
+
+.workshopsSection {
+  background-color: #3e7d24;
+  color: #ffffff;
+  padding: 60px 16px 70px 16px;
+}
+
+.workshopsInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.workshopsLeft {
+  max-width: 640px;
+}
+
+.workshopsTitle {
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.workshopsSubtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* --- Accordion wrapper --- */
+.workshopList {
+  margin-top: 10px;
+}
+
+.workshopItem {
+  margin-bottom: 2px;
+}
+
+/* clickable header */
+.workshopItemHeader {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+/* plus icon */
+.workshopPlusWrapper {
+  width: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.workshopPlus {
+  font-size: 22px;
+  font-weight: 700;
+  transition: transform 0.25s ease;
+}
+
+/* When open = rotate to look like “×” */
+.workshopPlusOpen {
+  transform: rotate(45deg);
+}
+
+.workshopText {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* expanding content */
+.workshopDetails {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  padding-left: 34px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.workshopDetailsOpen {
+  max-height: 200px;
+  opacity: 1;
+  margin-bottom: 8px;
+}
+
+/* divider */
+.workshopDivider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 4px 0 8px 0;
+}
+
+/* right side image */
+.workshopsRight {
+  display: flex;
+  justify-content: center;
+}
+
+.workshopImagePlaceholder {
+  width: 100%;
+  max-width: 420px;
+  height: 240px;
+  border-radius: 4px;
+
+  background-image: url("/corporateworkshop.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* 4. WHAT TO EXPECT ------------------------------------------- */
+
+.expectSection {
+  padding: 60px 16px 40px 16px;
+  background-color: #fdfdfb;
+}
+
+.expectInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.expectTitle {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.expectTopDivider,
+.expectBottomDivider {
+  height: 1px;
+  background-color: #bfbfbf;
+  margin: 10px auto;
+  max-width: 70%;
+}
+
+.expectGrid {
+  margin: 24px auto 10px auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 60px;
+  row-gap: 20px;
+}
+
+.expectColumn {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444444;
+}
+
+.expectHeading {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.expectText {
+  margin-bottom: 18px;
+}
+
+/* 5. CTA SECTION ---------------------------------------------- */
+
+.ctaSection {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  background-image: url("/teamcheers.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.ctaOverlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0.9)
+  );
+}
+
+.ctaInner {
+  max-width: 800px;
+  margin: 40px auto 50px auto;
+  padding: 40px 16px;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.ctaText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444444;
+  max-width: 620px;
+  margin: 0 auto 4px auto;
+}
+
+.ctaButton {
+  margin-top: 26px;
+  padding: 12px 32px;
+  border-radius: 4px;
+  border: none;
+  background-color: #3e7d24;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ctaButton:hover {
+  background-color: #35691f;
+}
+
+/* RESPONSIVE -------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .heroTitle {
+    font-size: 38px;
+  }
+
+  .whyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .workshopsInner {
+    grid-template-columns: 1fr;
+  }
+
+  .workshopsTitle {
+    font-size: 26px;
+  }
+
+  .expectGrid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+}

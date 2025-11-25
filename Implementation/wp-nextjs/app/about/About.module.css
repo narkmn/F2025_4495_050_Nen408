@@ -1,0 +1,307 @@
+.page {
+  background-color: #f5f4ec; /* same soft background */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 1. HERO + STATS -------------------------------------------------- */
+
+.heroSection {
+  padding: 80px 16px 40px 16px;
+  text-align: center;              /* center text in this section */
+}
+
+.heroInner {
+  max-width: 1200px;
+  margin: 0 auto;                  /* center block on page */
+  display: flex;
+  flex-direction: column;
+  align-items: center;             /* center children horizontally */
+}
+
+.heroTitle {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 60px;
+  text-align: center;              /* center the title text */
+}
+
+.statsRow {
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+  justify-content: center;         /* center the green circles */
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;             /* label directly under each circle */
+}
+
+.statCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background-color: #8fba4c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.statNumber {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.statPlus {
+  font-size: 18px;
+  align-self: flex-start;
+  padding-top: 10px;
+}
+
+.statLabel {
+  font-size: 16px;
+}
+
+/* 2. WHAT WE DO ---------------------------------------------------- */
+
+.whatSection {
+  max-width: 1200px;
+  margin: 80px auto 40px auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 60px;
+}
+
+.whatLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.smallLabel {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.smallGreenLine {
+  width: 60px;
+  height: 2px;
+  background-color: #3e7d24;
+}
+
+.whatRight {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* 3. INSTRUCTORS --------------------------------------------------- */
+
+.instructorsSection {
+  max-width: 1200px;
+  margin: 80px auto 60px auto;
+  padding: 0 16px;
+}
+
+.instructorsHeader {
+  margin-bottom: 40px;
+}
+
+.instructorsTitle {
+  font-size: 40px;
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.instructorsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.instructorCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.instructorImagePlaceholder {
+  width: 100%;
+  height: 360px;
+  background-color: #ddd;
+  margin-bottom: 16px;
+}
+
+.instructorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.instructorName {
+  font-size: 18px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.instructorRole {
+  font-size: 14px;
+}
+
+.instructorText {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* 4. THREE COLUMNS (MISSION/WHY/WHAT) ----------------------------- */
+
+.columnsSection {
+  border-top: 1px solid #dedacf;
+  border-bottom: 1px solid #dedacf;
+  background-color: #f5f4ec;
+}
+
+.columnsGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 16px 70px 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 40px;
+}
+
+.columnCard {
+  position: relative;
+  padding-top: 40px;
+}
+
+.columnNumber {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 60px;
+  font-weight: 700;
+  color: rgba(143, 186, 76, 0.35);
+}
+
+.columnTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.columnText {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* 5. JOURNEY TO HEALTH -------------------------------------------- */
+
+.journeySection {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 16px;
+}
+
+.journeyHeader {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.sectionGreenLine {
+  width: 80px;
+  height: 3px;
+  background-color: #3e7d24;
+  margin-top: 12px;
+}
+
+.journeyPlaceholder {
+  margin-top: 40px;
+  width: 100%;
+  height: 260px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* 6. WHEEL OF HEALTH ---------------------------------------------- */
+
+.wheelSection {
+  max-width: 1200px;
+  margin: 80px auto 100px auto;
+  padding: 0 16px;
+}
+
+.wheelHeader {
+  margin-bottom: 32px;
+}
+
+.wheelGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+  column-gap: 40px;
+  align-items: center;
+}
+
+.wheelImagePlaceholder {
+  width: 100%;
+  height: 320px;
+  border-radius: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.wheelList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wheelItem {
+  background-color: #ffffff;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* RESPONSIVE ------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .heroTitle {
+    font-size: 36px;
+  }
+
+  .statsRow {
+    gap: 40px;
+  }
+
+  .whatSection {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .instructorsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .columnsGrid {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+
+  .wheelGrid {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+}

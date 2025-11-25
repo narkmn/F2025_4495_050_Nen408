@@ -1,0 +1,275 @@
+.page {
+  background-color: #ffffff;
+}
+
+/* HERO -------------------------------------------------------- */
+
+.heroSection {
+  width: 100%;
+  background-color: #f7fafc;
+}
+
+/* full-width grid, no max-width here */
+.heroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+  align-items: stretch;
+  min-height: 320px;
+}
+
+/* left text block */
+.heroText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* push content away from edges like the WP page */
+  padding: 80px 40px 80px 120px;
+  max-width: 520px;
+}
+
+.heroKicker {
+  font-size: 28px;
+  font-weight: 600;
+  color: #3e7d24; /* green */
+  margin: 0;
+  line-height: 1.2;
+}
+
+.heroTitle {
+  margin-top: 20px;
+  font-size: 44px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #172742; /* navy */
+}
+
+/* right image column */
+.heroImageWrapper {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+
+
+/* ALL COURSES ------------------------------------------------- */
+
+.allCoursesSection {
+  max-width: 1200px;
+  margin: 60px auto 40px auto;
+  padding: 0 16px;
+}
+
+.allCoursesHeader {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 40px;
+  font-weight: 700;
+  color: #172742;
+}
+
+.sectionLine {
+  width: 80px;
+  height: 3px;
+  background-color: #3e7d24;
+  margin-top: 10px;
+}
+
+.coursesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+/* Course cards */
+
+.courseCard {
+  background-color: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+}
+
+.cardImage {
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  background-color: #3e7d24;
+  color: #ffffff;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 0 8px 8px 0;
+}
+
+.cardBody {
+  padding: 18px 24px 22px 24px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #172742;
+  text-align: center;
+}
+
+/* TESTIMONIALS ----------------------------------------------- */
+
+.testimonialsSection {
+  margin: 80px 0 70px 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(227, 241, 233, 0.6),
+    #ffffff
+  );
+  padding: 40px 16px 50px 16px;
+}
+
+.testimonialsHeader {
+  max-width: 1200px;
+  margin: 0 auto 24px auto;
+}
+
+.testimonialsTitle {
+  font-size: 40px;
+  font-weight: 700;
+  color: #172742;
+  margin-top: 10px;
+}
+
+.testimonialCard {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  padding: 32px 40px;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  column-gap: 40px;
+  align-items: center;
+}
+
+.testimonialTextWrapper {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.testimonialText + .testimonialText {
+  margin-top: 10px;
+}
+
+.testimonialMeta {
+  margin-top: 18px;
+}
+
+.testimonialName {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+}
+
+.testimonialRole {
+  font-size: 13px;
+  color: #3e7d24;
+}
+
+/* avatar */
+
+.testimonialAvatarWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.avatarOuter {
+  width: 130px;
+  height: 130px;
+  border-radius: 999px;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px #ffffff, 0 0 0 10px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarInner {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.avatarImage {
+  object-fit: cover;
+}
+
+/* slider dots */
+
+.sliderDots {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background-color: #cfd5dd;
+}
+
+.dotActive {
+  background-color: #3e7d24;
+}
+
+/* RESPONSIVE -------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .heroText {
+    padding-top: 0;
+  }
+
+  .heroTitle {
+    font-size: 34px;
+  }
+
+  .coursesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonialsTitle {
+    font-size: 32px;
+  }
+
+  .testimonialCard {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+}

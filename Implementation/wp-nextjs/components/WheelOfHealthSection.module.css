@@ -1,0 +1,122 @@
+.section {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 16px;
+}
+
+/* Title */
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 600;
+  color: #172742;
+}
+
+.greenLine {
+  width: 80px;
+  height: 3px;
+  background-color: #3e7d24;
+  margin-top: 10px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.leftCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.wheelImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  /*border-radius: 24px;*/
+  overflow: hidden;
+  background: white;
+  /*box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.12);*/
+}
+
+.wheelImage {
+  object-fit: contain;
+}
+
+
+/* Right list */
+.rightList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.systemItem {
+  background: #ffffff;
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Colored dots */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dotPink {
+  background-color: #ff70b5;
+}
+
+.dotRed {
+  background-color: #c9433f;
+}
+
+.dotRedDark {
+  background-color: #b72639;
+}
+
+.dotBlue {
+  background-color: #38c4dd;
+}
+
+.dotOrange {
+  background-color: #ff9a27;
+}
+
+.dotPurple {
+  background-color: #c47dff;
+}
+
+.dotYellow {
+  background-color: #ffd447;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .wheelPlaceholder {
+    height: 260px;
+  }
+}

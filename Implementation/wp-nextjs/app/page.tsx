@@ -1,8 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ArrowRight, Play } from "lucide-react";
 import Hero from "@/components/home/hero";
 import AboutSection from "@/components/home/aboutSection";
 import FeaturedVideo from "@/components/home/featuredVideo";
