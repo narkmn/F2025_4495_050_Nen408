@@ -1,7 +1,6 @@
 // app/dashboard/page.tsx
 import { getCurrentUser } from "@/lib/auth";
 import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -56,11 +55,7 @@ export default async function DashboardPage() {
   const token = (await cookies()).get("hc_token")?.value;
   if (!token) redirect("/login");
 
-  const decoded = jwt.decode(token) as any;
-  const displayName =
-    decoded?.data?.user?.display_name ||
-    decoded?.data?.user?.displayName ||
-    user.username ||
+  const displayName = user.username ||
     "Student";
 
   const enrolledCourses = await getEnrolledCourses(token);
