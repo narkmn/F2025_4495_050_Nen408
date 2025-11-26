@@ -1,6 +1,5 @@
 // app/corporate-wellness/page.tsx
 import styles from "./CorporateWellness.module.css";
-import { Footer } from "../../components/footer";
 import WorkshopsAccordion from "@/components/WorkshopsAccordion";
 
 export default function CorporateWellnessPage() {
@@ -167,7 +166,6 @@ export default function CorporateWellnessPage() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }
