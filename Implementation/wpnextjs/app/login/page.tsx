@@ -59,58 +59,74 @@ export default function LoginPage() {
 
   // Signup handler
   const handleSignupSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
+  e.preventDefault();
+  setError(null);
 
-    // Client-side validation
-    if (!signupUsername || !signupEmail || !signupPassword || !signupConfirmPassword) {
-      setError("All fields are required");
+  // Client-side validation
+  if (!signupUsername || !signupEmail || !signupPassword || !signupConfirmPassword) {
+    setError("All fields are required");
+    return;
+  }
+
+  if (signupPassword !== signupConfirmPassword) {
+    setError("Passwords do not match");
+    return;
+  }
+
+  if (signupPassword.length < 6) {
+    setError("Password must be at least 6 characters");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: signupUsername,
+        email: signupEmail,
+        password: signupPassword,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Signup failed");
+    }
+
+    // Auto-login after signup (recommended)
+    const loginRes = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: signupUsername,
+        password: signupPassword,
+        remember: true,
+      }),
+    });
+
+    const loginData = await loginRes.json();
+
+    if (!loginRes.ok) {
+      throw new Error("Account created, but auto-login failed");
+    }
+
+    if (loginData.redirect) {
+      router.push(loginData.redirect);
+      router.refresh();
       return;
     }
 
-    if (signupPassword !== signupConfirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+  } catch (err: any) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
-    if (signupPassword.length < 6) {
-      setError("Password must be at least 6 characters");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: signupUsername,
-          email: signupEmail,
-          password: signupPassword,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Signup failed");
-      }
-
-      // Success: redirect to dashboard or login tab
-      // Option 1: Auto-login after signup (common pattern)
-      router.push("/dashboard");
-
-      // Option 2: Switch to login tab (uncomment below if preferred)
-      // setTab("login");
-      // setError(null);
-      // alert("Account created! Please log in.");
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
