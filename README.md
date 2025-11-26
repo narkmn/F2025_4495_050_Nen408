@@ -1,16 +1,34 @@
-# HealthAcademyNen08
+# ProjectNEn08_AINutiritionist
 CSIS 4450-05
 
-Happy nutrition provides consultations to improve gut health, digestion, hormone balance, and stress management through personalized diet, targeted supplementation, and transformative lifestyle changes. The main website, www.happynutrition.ca, is currently used for advertising and selling supplements.
+This is related to the course in developing AI chatbot in Wordpress website and improved UI in NextJS using Headless CMS technology. 
+The website is E-learning Management System powered by AI chatbot. 
 
-There are 2 websites under development. An online learning platform, www.healthacademy.ca, is published and it will be promoted to public soon. However, the client wants changes on the website by improving performance, fixing some bugs, making user-friendly, and more importantly adding AI chatbot that allows users to have informative conversations regarding the course materials and nutrition advice. 
+## Getting Started
 
-In the implementation folder there will be 2 folder healthacademy and AskNutritionist-main. 
+There are 2 main projects in this repo
+ - /Implementation/healthacademy/
+ - /Implementation/wpnextjs/
 
 ## healthacademy
 
-It is main website built by wordpress. We will improve performance, we just migrated from live to local server
+It is main website built by wordpress. 
+cd /Implementation/healthacademy/
+cp /Implementation/healthacademy/ c:xamp/htdoc/
 
-## AskNutritionist-main
+start xamp run server and mysql
 
-It is chatbot also some intergration with wordpress website. we have not started yet
+go to localhost:
+
+## NextJS
+
+cd /Implementation/wpnextjs/
+
+npm install
+
+create .env file and setup your ENV variables
+This include WORDPRESS_BACKEND_URL, WORDPRESS_URL, WP_USER, WP_APP_PASSWORD, WP_API_URL, JWT_SECRET
+
+npm run dev
+or 
+npm run built
