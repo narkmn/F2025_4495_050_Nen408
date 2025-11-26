@@ -1,43 +1,20 @@
 // app/courses/page.tsx
 import Image from "next/image";
 import styles from "./Courses.module.css";
-import { Footer } from "../../components/footer";
+import { getCourses } from "@/lib/learnDash";
+import type { Course } from "@/lib/types"
+import { getCourseImage } from "@/lib/learnDash";
 
-type Course = {
-  id: number;
-  title: string;
-  badge: string;
-  image: string;
-};
+export default async function CoursesPage() {
+  let courses: Course[] = [];
 
-const courses: Course[] = [
-  {
-    id: 1,
-    title: "Natural Supplement Advisor",
-    badge: "Free",
-    image: "/courses/course-1.jpg",
-  },
-  {
-    id: 2,
-    title: "Anti-Age Nutrition Consultant",
-    badge: "Free",
-    image: "/courses/course-2.jpg",
-  },
-  {
-    id: 3,
-    title: "Integrative Health and Nutrition",
-    badge: "Free",
-    image: "/courses/course-3.jpg",
-  },
-  {
-    id: 4,
-    title: "Functional Nutrition for Mental Health",
-    badge: "599",
-    image: "/courses/course-4.jpg",
-  },
-];
-
-export default function CoursesPage() {
+  try {
+    courses = await getCourses(); // ← Assign to the outer variable!
+    courses = courses.slice(0, 4); // optional: only show 4 on homepage
+  } catch (err: any) {
+    console.error("Homepage courses error:", err.message || err);
+  }
+  
   return (
     <div className={styles.page}>
       {/* HERO ------------------------------------------------------ */}
@@ -80,15 +57,15 @@ export default function CoursesPage() {
             <article key={course.id} className={styles.courseCard}>
               <div className={styles.cardImageWrapper}>
                 <Image
-                  src={course.image}
-                  alt={course.title}
+                  src={getCourseImage(course)}
+                  alt={course.title.rendered}
                   fill
                   className={styles.cardImage}
                 />
-                <div className={styles.badge}>{course.badge}</div>
+                <div className={styles.badge}>{course.id}</div>
               </div>
               <div className={styles.cardBody}>
-                <h3 className={styles.cardTitle}>{course.title}</h3>
+                <h3 className={styles.cardTitle}>{course.title.rendered}</h3>
               </div>
             </article>
           ))}
@@ -148,8 +125,6 @@ export default function CoursesPage() {
           <span className={styles.dot} />
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

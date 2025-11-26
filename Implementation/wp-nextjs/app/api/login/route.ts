@@ -1,10 +1,10 @@
-// /app/api/login/route.ts
+// app/api/login/route.ts ← DO NOT CHANGE THIS — IT'S PERFECT
 import { NextResponse } from "next/server";
 import { serialize } from "cookie";
 
 const WP_TOKEN_URL = "https://healthacademy.ca/wp-json/jwt-auth/v1/token";
-const COOKIE_NAME = "hc_token";
-const TOKEN_MAX_AGE = 7 * 24 * 60 * 60; // 7 days
+const COOKIE_NAME = "hc_token";           // ← This is your cookie name
+const TOKEN_MAX_AGE = 7 * 24 * 60 * 60;
 
 export async function POST(request: Request) {
   try {
@@ -31,22 +31,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No token returned from WP" }, { status: 500 });
     }
 
-    // Set cookie (httpOnly)
     const cookieOptions: any = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      sameSite: "strict",
       path: "/",
     };
-    if (remember) {
-      cookieOptions.maxAge = TOKEN_MAX_AGE;
-    }
+    if (remember) cookieOptions.maxAge = TOKEN_MAX_AGE;
+
     const cookie = serialize(COOKIE_NAME, token, cookieOptions);
 
     const res = NextResponse.json({ 
       ok: true, 
+      redirect: "/dashboard",
       user: { 
-        username: wpJson.user_display_name || wpJson.user_nicename || wpJson.user_email || null 
+        username: wpJson.user_display_name || wpJson.user_nicename || wpJson.user_email 
       } 
     });
     res.headers.set("Set-Cookie", cookie);

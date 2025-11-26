@@ -1,20 +1,27 @@
+// next.config.ts  (or next.config.js)
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
-  // THIS IS THE FIX
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "healthacademy.ca",
-        port: "",           // leave empty
-        pathname: "/**",    // allow all paths under your domain
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.healthacademy.ca", // for subdomains if any
+        pathname: "/**",
+      },
+      // Optional: dev only – allows images from WP when running locally
+      {
+        protocol: "http",
+        hostname: "localhost",
       },
     ],
-    // Optional: also allow localhost for dev
-    domains: ["localhost"], // old way – kept for compatibility
   },
 };
 

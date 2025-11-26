@@ -1,7 +1,8 @@
+import Image from "next/image";
 import styles from "./About.module.css";
-import JourneySection from "@/components/JourneySection";
-import WheelOfHealthSection from "@/components/WheelOfHealthSection";
-import AnimatedNumber from "@/components/AnimatedNumber";
+import JourneySection from "@/components/about/JourneySection";
+import WheelOfHealthSection from "@/components/about/WheelOfHealthSection";
+import AnimatedNumber from "@/components/about/AnimatedNumber";
 
 export default function About() {
   return (
@@ -80,7 +81,12 @@ export default function About() {
         <div className={styles.instructorsGrid}>
           {/* Olga card */}
           <article className={styles.instructorCard}>
-            <div className={styles.instructorImagePlaceholder} />
+            <div className={styles.instructorImagePlaceholder}>
+              <img src="https://healthacademy.ca/wp-content/uploads/2025/03/pinterest-profile-Olga-1.jpg" 
+                alt="Olga"
+                className="w-full h-96 object-cover object-center"
+              />
+            </div>
 
             <div className={styles.instructorInfo}>
               <h3 className={styles.instructorName}>OLGA GRASS</h3>
@@ -97,7 +103,12 @@ export default function About() {
 
           {/* Alex card */}
           <article className={styles.instructorCard}>
-            <div className={styles.instructorImagePlaceholder} />
+            <div className={styles.instructorImagePlaceholder}>
+              <img src="https://healthacademy.ca/wp-content/uploads/2025/03/pinterest-profile-Alex.jpg" 
+                alt="Alex Kostikov" 
+                className="w-full h-96 object-cover object-center"
+              />
+            </div>
 
             <div className={styles.instructorInfo}>
               <h3 className={styles.instructorName}>ALEX KOSTIKOV</h3>

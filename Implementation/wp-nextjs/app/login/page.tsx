@@ -1,5 +1,3 @@
-// app/auth/page.tsx
-
 "use client";
 
 import { useState } from "react";
@@ -46,8 +44,12 @@ export default function LoginPage() {
       if (!res.ok) {
         throw new Error(data.error || "Login failed");
       }
-
-      router.push("/dashboard");
+      
+      if (data.redirect) {
+        router.push(data.redirect);
+        router.refresh();
+        return;
+      }
     } catch (err: any) {
       setError(err.message);
     } finally {

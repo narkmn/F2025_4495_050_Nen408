@@ -1,38 +1,19 @@
 // app/layout.tsx
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Rubik } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/footer";
 import { getPrimaryMenu } from "@/lib/queries";
+import { getCurrentUser } from "@/lib/auth";
 
 
 const rubik = Rubik({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-rubik",
-});
-
-const playfair = localFont({
-  src: [
-    { path: "../public/fonts/playfair-display-v40-latin-regular.woff2",  weight: "400" },
-    { path: "../public/fonts/playfair-display-v40-latin-500.woff2",       weight: "500" },
-    { path: "../public/fonts/playfair-display-v40-latin-600.woff2",       weight: "600" },
-    { path: "../public/fonts/playfair-display-v40-latin-700.woff2",       weight: "700" },
-  ],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const inter = localFont({
-  src: [
-    { path: "../public/fonts/inter-v20-latin-regular.woff2",  weight: "400" },
-    { path: "../public/fonts/inter-v20-latin-500.woff2",      weight: "500" },
-    { path: "../public/fonts/inter-v20-latin-600.woff2",      weight: "600" },
-    { path: "../public/fonts/inter-v20-latin-700.woff2",      weight: "700" },
-  ],
-  variable: "--font-inter",
-  display: "swap",
 });
 
 // ──────────────────────────────────────────────────────────────
@@ -56,9 +37,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const menuItems = await getPrimaryMenu();
+  const user = await getCurrentUser();
 
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} ${rubik.variable}`}>
+    <html lang="en" className={`${rubik.variable}`}>
       {/* Proper way to load Swiper CSS globally in Next.js 13+ */}
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -67,8 +49,9 @@ export default async function RootLayout({
       </head>
 
       <body className="font-rubik antialiased bg-white text-gray-900">
-        <Navbar items={menuItems} />
+        <Navbar items={menuItems } isLoggedIn={!!user} userName={user?.username || "Student"} />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

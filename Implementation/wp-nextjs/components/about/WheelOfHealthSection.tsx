@@ -17,7 +17,7 @@ export default function WheelOfHealthSection() {
     <div className={styles.leftCard}>
         <div className={styles.wheelImageWrapper}>
         <Image
-            src="/wheel-of-health.png"
+            src="https://healthacademy.ca/wp-content/uploads/2025/03/wheel-removebg-preview.png"
             alt="Wheel of Health"
             fill
             className={styles.wheelImage}
