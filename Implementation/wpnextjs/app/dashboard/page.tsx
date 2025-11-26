@@ -42,7 +42,7 @@ async function logoutAction() {
     sameSite: "lax",
   });
 
-  redirect("/login");
+  redirect("/");
 }
 
 // Helper: v2 users/<id>/courses

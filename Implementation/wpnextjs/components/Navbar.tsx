@@ -5,14 +5,15 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useAuth } from "./AuthContext";
 
 type Props = {
-  items: { id: string; label: string; href: string }[];
-  isLoggedIn: boolean;   // ← comes from server, not state
-  userName: string;      // ← comes from server
+  items: { id: string; label: string; href: string }[]
 };
 
-export default function Navbar({ items, isLoggedIn, userName }: Props) {
+export default function Navbar({ items }: Props) {
+  const user = useAuth();
+  if(user) console.log("Navbar.tsx username from context:", user.username);
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -43,9 +44,9 @@ export default function Navbar({ items, isLoggedIn, userName }: Props) {
           ))}
         </div>
 
-        {/* Auth Button — 100% correct now */}
+        {/* Dashboard */}
         <div className="flex items-center gap-6">
-          {isLoggedIn ? (
+          {user ? (
             <Link href="/dashboard" className="bg-[#5EA758] hover:bg-[#5EA758]/90 text-white font-medium px-6 py-3 rounded-lg">
               Your Dashboard
             </Link>
@@ -71,7 +72,7 @@ export default function Navbar({ items, isLoggedIn, userName }: Props) {
               </Link>
             ))}
             <div className="pt-4 border-t">
-              {isLoggedIn ? (
+              {user ? (
                 <Link href="/dashboard" className="block text-center bg-[#5EA758] text-white py-3 rounded-lg">
                   Your Dashboard
                 </Link>

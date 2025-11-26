@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { serialize } from "cookie";
 
 const WP_TOKEN_URL = "https://healthacademy.ca/wp-json/jwt-auth/v1/token";
-const COOKIE_NAME = "hc_token";           // ← This is your cookie name
+const COOKIE_NAME = "hc_token";
 const TOKEN_MAX_AGE = 7 * 24 * 60 * 60;
  
 export async function POST(request: Request) {
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     const cookieOptions: any = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "Lax",
       path: "/",
     };
     if (remember) cookieOptions.maxAge = TOKEN_MAX_AGE;

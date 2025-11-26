@@ -7,10 +7,7 @@ export async function getCurrentUser() {
     const token = (await cookies()).get("hc_token")?.value;
     // console.log("Retrieved token:", token);
 
-    if (!token) {
-      console.log("No token found");
-      return null;
-    }
+    if (!token) return null;
 
     const res = await fetch(WP_ME_URL, {
       headers: {
@@ -25,13 +22,14 @@ export async function getCurrentUser() {
     }
 
     const user = await res.json();
-    // console.log("Current User:", user);
+    // console.log("Current User:", user._links.courses[0].href);
 
     return {
       id: user.id,
       username: user.name,
       email: user.email,
       roles: user.roles,
+      courses_link: user._links.courses[0].href,
     };
   } catch (err: any) {
     console.log("getCurrentUser error:", err.message);

@@ -1,13 +1,13 @@
 // app/layout.tsx
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { Rubik } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { getPrimaryMenu } from "@/lib/queries";
 import { getCurrentUser } from "@/lib/auth";
+import { AuthProvider } from "@/components/AuthContext";
 
 
 const rubik = Rubik({
@@ -17,17 +17,24 @@ const rubik = Rubik({
 });
 
 // ──────────────────────────────────────────────────────────────
-// Metadata + Favicons (kills the black N forever)
+// Metadata
 // ──────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: {
-    default: "Natural Health Academy",
-    template: "%s | Natural Health Academy",
+    default: "Health Academy",
+    template: "%s | Health Academy",
   },
   description: "Advanced Nutrition & Holistic Health Courses",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: {
+      url:"https://healthacademy.ca/wp-content/uploads/2025/03/cropped-HEALTH-ACADEMY-IG-Happy-Nutrition-8-32x32.png",
+      type: "image/png",
+      sizes: "32x32",
+    },
+    apple: {
+      url:"https://healthacademy.ca/wp-content/uploads/2025/03/cropped-HEALTH-ACADEMY-IG-Happy-Nutrition-8-32x32.png",
+      type: "image/png",
+      sizes: "32x32",}
   },
 };
 
@@ -49,9 +56,11 @@ export default async function RootLayout({
       </head>
 
       <body className="font-rubik antialiased bg-white text-gray-900">
-        <Navbar items={menuItems } isLoggedIn={!!user} userName={user?.username || "Student"} />
-        <main>{children}</main>
-        <Footer />
+        <AuthProvider user={user}>
+          <Navbar items={ menuItems }/>
+          <main>{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
