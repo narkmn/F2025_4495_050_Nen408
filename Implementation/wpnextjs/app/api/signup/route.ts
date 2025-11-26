@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
-const WP_SIGNUP_URL = "https://healthacademy.ca/wp-json/wp/v2/users/register";
+// const WP_SIGNUP_URL = "https://healthacademy.ca/wp-json/wp/v2/users/register";
+const WP_SIGNUP_URL = "https://healthacademy.ca//wp-json/custom/v1/register";
+
 
 export async function POST(req: Request) {
   try {

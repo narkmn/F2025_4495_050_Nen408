@@ -5,7 +5,7 @@ import { serialize } from "cookie";
 const WP_TOKEN_URL = "https://healthacademy.ca/wp-json/jwt-auth/v1/token";
 const COOKIE_NAME = "hc_token";           // ← This is your cookie name
 const TOKEN_MAX_AGE = 7 * 24 * 60 * 60;
-
+ 
 export async function POST(request: Request) {
   try {
     const { username, password, remember = false } = await request.json();
