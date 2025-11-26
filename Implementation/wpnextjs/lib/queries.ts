@@ -1,6 +1,6 @@
 const baseUrl=process.env.WORDPRESS_URL;
 import { gql, GraphQLClient } from 'graphql-request';
-import { Page } from '@/lib/types';
+// import { Page } from '@/lib/types';
 
 const endpoint = 'https://healthacademy.ca/graphql';
 const client = new GraphQLClient(baseUrl!);
