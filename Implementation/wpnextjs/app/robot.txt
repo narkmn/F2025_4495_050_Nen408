@@ -1,0 +1,10 @@
+export default function robots() {
+  const baseUrl = "https://www.healthacademy.ca";
+
+  return `
+User-agent: *
+Allow: /
+
+Sitemap: ${baseUrl}/sitemap.xml
+`.trim();
+}

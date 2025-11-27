@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import NutritionChat from "@/components/nutritionChat";
 
 // Types for LearnDash course objects
 type LdCourse = {
@@ -289,6 +290,7 @@ export default async function DashboardPage() {
           </main>
         </div>
       </div>
+      <NutritionChat token={token}/>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AboutSection() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -63,13 +64,13 @@ export default function AboutSection() {
               natural, evidence-based approaches...
             </p>
 
-            <a
+            <Link
               href="/about"
               className="inline-flex items-center bg-green-700 text-white px-6 py-3 rounded-md font-semibold hover:bg-green-800 transition"
             >
               Read Our Story
               <span className="ml-2 text-lg">›</span>
-            </a>
+            </Link>
           </div>
 
         </div>

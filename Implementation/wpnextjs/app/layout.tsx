@@ -36,6 +36,15 @@ export const metadata: Metadata = {
       type: "image/png",
       sizes: "32x32",}
   },
+  metadataBase: new URL("https://www.healthacademy.ca"),
+  openGraph: {
+    title: "Health Academy",
+    description:
+      "Evidence-based health and nutrition courses, powered by Health Academy.",
+    url: "https://your-frontend-domain.com",
+    siteName: "Health Academy",
+    type: "website",
+  },
 };
 
 export default async function RootLayout({
@@ -48,7 +57,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${rubik.variable}`}>
-      {/* Proper way to load Swiper CSS globally in Next.js 13+ */}
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <link rel="icon" href="/favicon.ico" />
