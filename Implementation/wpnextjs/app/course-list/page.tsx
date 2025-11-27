@@ -5,12 +5,14 @@ import { getCourses } from "@/lib/learnDash";
 import type { Course } from "@/lib/types"
 import { getCourseImage } from "@/lib/learnDash";
 
+
 export default async function CoursesPage() {
   let courses: Course[] = [];
 
   try {
-    courses = await getCourses(); // ← Assign to the outer variable!
-    courses = courses.slice(0, 4); // optional: only show 4 on homepage
+    courses = await getCourses(); 
+    courses = courses.slice(0, 4);
+    console.log("Homepage courses fetched:", courses);
   } catch (err: any) {
     console.error("Homepage courses error:", err.message || err);
   }
@@ -33,7 +35,7 @@ export default async function CoursesPage() {
 
     <div className={styles.heroImageWrapper}>
       <Image
-        src="/fruits.jpg"           // image inside /public
+        src="https://healthacademy.ca/wp-content/uploads/2025/01/d6f66398-192b-467a-b4e8-c2df89f2e1be.jpg"
         alt="Healthy food and fruit"
         fill
         priority
@@ -42,8 +44,6 @@ export default async function CoursesPage() {
     </div>
   </div>
 </section>
-
-
 
       {/* ALL COURSES ---------------------------------------------- */}
       <section className={styles.allCoursesSection}>
@@ -55,18 +55,20 @@ export default async function CoursesPage() {
         <div className={styles.coursesGrid}>
           {courses.map((course) => (
             <article key={course.id} className={styles.courseCard}>
-              <div className={styles.cardImageWrapper}>
-                <Image
-                  src={getCourseImage(course)}
-                  alt={course.title.rendered}
-                  fill
-                  className={styles.cardImage}
-                />
-                <div className={styles.badge}>{course.id}</div>
-              </div>
-              <div className={styles.cardBody}>
-                <h3 className={styles.cardTitle}>{course.title.rendered}</h3>
-              </div>
+              <a href={`https://healthacademy.ca/courses/${course.slug}`}>
+                <div className={styles.cardImageWrapper}>
+                  <Image
+                    src={getCourseImage(course)}
+                    alt={course.title.rendered}
+                    fill
+                    className={styles.cardImage}
+                  />
+                  {/* <div className={styles.badge}>$599</div> */}
+                </div>
+                <div className={styles.cardBody}>
+                  <h3 className={styles.cardTitle}>{course.title.rendered}</h3>
+                </div>
+              </a>
             </article>
           ))}
         </div>
@@ -108,7 +110,7 @@ export default async function CoursesPage() {
               <div className={styles.avatarInner}>
                 {/* Replace this with a real image later if you want */}
                 <Image
-                  src="/courses/student-avatar.jpg"
+                  src="https://healthacademy.ca/wp-content/uploads/2025/02/8103f8e4-07ab-4b9f-98ad-2cdc9cb173bb.png"
                   alt="Student avatar"
                   fill
                   className={styles.avatarImage}

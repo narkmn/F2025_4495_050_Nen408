@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
 
-const WP_ME_URL = "https://healthacademy.ca/wp-json/wp/v2/users/me";
+const WP_ME_URL = `${process.env.WP_API_URL}/wp-json/wp/v2/users/me`
+console.log("WP_ME_URL:", WP_ME_URL);
+
 
 export async function getCurrentUser() {
   try {
@@ -22,7 +24,7 @@ export async function getCurrentUser() {
     }
 
     const user = await res.json();
-    // console.log("Current User:", user);
+    console.log("Current User:", user);
 
     return {
       id: user.id,
@@ -30,6 +32,7 @@ export async function getCurrentUser() {
       email: user.email,
       roles: user.roles,
       courses_link: user._links.courses[0].href,
+      avatar: user.avatar_urls["96"],
     };
   } catch (err: any) {
     console.log("getCurrentUser error:", err.message);

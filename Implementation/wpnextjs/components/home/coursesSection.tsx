@@ -38,10 +38,6 @@ export default function CoursesSection({ courses }: Props) {
             courses.map((course) => {
               const imageUrl = getCourseImage(course);
               const title = course.title.rendered;
-              const excerpt =
-                course.excerpt?.rendered
-                  ?.replace(/<\/?[^>]+(>|$)/g, "")
-                  .slice(0, 130) + "..." || "Professional training in advanced clinical practice.";
 
               return (
                 <div
@@ -71,9 +67,6 @@ export default function CoursesSection({ courses }: Props) {
                     <h3 className="text-2xl font-playfair font-semibold text-[#0F223A] mt-3 mb-4 line-clamp-2">
                       {title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed mb-6 text-sm line-clamp-3">
-                      {excerpt}
-                    </p>
 
                     <Link
                       href="/course-list"

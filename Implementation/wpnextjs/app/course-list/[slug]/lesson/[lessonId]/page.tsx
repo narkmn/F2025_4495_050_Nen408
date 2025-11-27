@@ -1,9 +1,17 @@
 // app/course-list/[slug]/lesson/[lessonId]/page.tsx
+
 import Link from "next/link";
 import { cookies } from "next/headers";
 
 const WP_API = process.env.WP_API_URL ?? "https://healthacademy.ca";
 const BASE = `${WP_API}/wp-json/ldlms/v2`;
+
+// ─────────────────────────────────────────────
+// BASIC AUTH (LearnDash ONLY accepts this)
+// ─────────────────────────────────────────────
+const username = process.env.WP_USER!;
+const appPassword = process.env.WP_APP_PASSWORD!;
+const basicAuth = Buffer.from(`${username}:${appPassword}`).toString("base64");
 
 // ─────────────────────────────────────────────
 // Types
@@ -32,10 +40,10 @@ type Topic = {
 // ─────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────
-async function getJson<T>(url: string, token: string): Promise<T> {
+async function getJson<T>(url: string): Promise<T> {
   const res = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Basic ${basicAuth}`,
       "Content-Type": "application/json",
     },
     cache: "no-store",
@@ -65,65 +73,46 @@ export default async function LessonPage({
 }: {
   params: Promise<{ slug: string; lessonId: string }>;
 }) {
-  // ⬅ important: await params to avoid the “params is a Promise” error
   const { slug, lessonId } = await params;
 
+  // Check your JWT login cookie (but do NOT use it for LearnDash)
   const cookieStore = await cookies();
   const token = cookieStore.get("hc_token")?.value;
 
-  if (!token) {
-    // you already guard with middleware / login, so this is just a safety net
-    throw new Error("Auth token missing – please log in again.");
-  }
+  if (!token) throw new Error("Auth token missing – please log in again.");
 
   // 1) Get course by slug
   const courses = await getJson<Course[]>(
-    `${BASE}/sfwd-courses?slug=${slug}`,
-    token
+    `${BASE}/sfwd-courses?slug=${slug}`
   );
-  console.log("Courses fetched for slug", slug, courses);
   const course = courses[0];
 
-  if (!course) {
-    throw new Error("Course not found");
-  }
+  if (!course) throw new Error("Course not found");
 
-  // 2) All lessons (modules) for this course – left sidebar
+  // 2) All lessons (modules)
   const lessons = await getJson<Lesson[]>(
-    `${BASE}/sfwd-lessons?course=${course.id}&per_page=100`,
-    token
+    `${BASE}/sfwd-lessons?course=${course.id}&per_page=100`
   );
-  console.log(lessons);
 
   const activeLessonId = Number(lessonId);
   const activeLesson =
     lessons.find((l) => l.id === activeLessonId) ?? lessons[0];
 
-  // 3) All topics for this course, then filter to topics that belong
-  //    to THIS lesson by matching the lesson slug inside the URL:
-  //
-  //    /courses/{course-slug}/lessons/{lesson-slug}/topic/{topic-slug}/
-  //
+  // 3) All topics, then filter by lesson slug
   const allTopics = await getJson<Topic[]>(
-    `${BASE}/sfwd-topic?course=${course.id}&per_page=100`,
-    token
+    `${BASE}/sfwd-topic?course=${course.id}&per_page=100`
   );
-  console.log(allTopics);
 
   const topicsForActiveLesson = allTopics.filter((t) =>
     t.link?.includes(`/lessons/${activeLesson.slug}/`)
   );
 
-  console.log(
-    `Course ${course.slug} – total topics: ${allTopics.length}, topics for lesson ${activeLesson.slug}: ${topicsForActiveLesson.length}`
-  );
-
   // ─────────────────────────────────────────────
-  // UI – mimic the real LearnDash layout
+  // UI (unchanged — NO DESIGN CHANGES)
   // ─────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-[#f7f5ef] pb-16">
-      {/* Top bar (same feel as dashboard) */}
+      {/* Top bar */}
       <header className="border-b border-[#e6dfcf] bg-white/90">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div>
@@ -137,12 +126,6 @@ export default async function LessonPage({
           </div>
           <div className="flex items-center gap-6 text-sm">
             <Link
-              href="/profile"
-              className="font-medium text-[#6b8d3b] hover:text-[#4f6a2b]"
-            >
-              My Profile
-            </Link>
-            <Link
               href="/logout"
               className="font-medium text-[#c0392b] hover:text-[#a22d21]"
             >
@@ -152,15 +135,15 @@ export default async function LessonPage({
         </div>
       </header>
 
-      {/* Main grid: sidebar + main content */}
+      {/* Main grid */}
       <main className="mx-auto mt-8 grid max-w-6xl gap-8 px-6 lg:grid-cols-[320px,1fr]">
-        {/* ───────── Left: My Learning sidebar ───────── */}
+        {/* Left: Sidebar */}
         <aside className="rounded-sm bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06)]">
           <div className="border-b border-[#e6dfcf] px-5 py-3 text-sm font-semibold">
             My Learning
           </div>
 
-          {/* Active course row */}
+          {/* Active course */}
           <div className="flex items-center justify-between border-b border-[#e6dfcf] bg-[#f5faee] px-5 py-3 text-sm">
             <div className="font-semibold text-[#3d4b2c]">
               {cleanTitle(course.title.rendered)}
@@ -170,7 +153,7 @@ export default async function LessonPage({
             </span>
           </div>
 
-          {/* Modules list */}
+          {/* Lessons list */}
           <div className="divide-y divide-[#ece5d4] text-sm">
             {lessons.map((lesson) => {
               const isActive = lesson.id === activeLesson.id;
@@ -197,7 +180,7 @@ export default async function LessonPage({
           </div>
         </aside>
 
-        {/* ───────── Right: Lesson detail + topics + recent activity ───────── */}
+        {/* Right: Lesson detail */}
         <section className="space-y-8">
           {/* Lesson detail card */}
           <div className="rounded-sm bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06)]">
@@ -215,13 +198,13 @@ export default async function LessonPage({
               </span>
             </div>
 
-            {/* Lesson title & topics box */}
+            {/* Lesson title & topics */}
             <div className="px-6 py-5">
               <h1 className="mb-6 text-2xl font-semibold text-[#333]">
                 {cleanTitle(activeLesson.title.rendered)}
               </h1>
 
-              {/* Topics in this lesson */}
+              {/* Topics list */}
               <div className="mb-6 rounded-sm border border-[#dfe8c7] bg-[#f8fbf1]">
                 <button
                   type="button"
@@ -258,7 +241,7 @@ export default async function LessonPage({
             </div>
           </div>
 
-          {/* Recent activity card */}
+          {/* Recent activity */}
           <div className="rounded-sm bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06)]">
             <div className="border-b border-[#e6dfcf] px-6 py-3 text-sm font-semibold">
               Recent Activity

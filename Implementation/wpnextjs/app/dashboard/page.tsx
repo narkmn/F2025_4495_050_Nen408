@@ -187,12 +187,12 @@ export default async function DashboardPage() {
           </div>
 
           <div className="flex items-center gap-6 text-sm">
-            <Link
+            {/* <Link
               href="/profile"
               className="text-[#5EA758] hover:text-[#4c8747] font-medium"
             >
               My Profile
-            </Link>
+            </Link> */}
 
             <form action={logoutAction}>
               <button

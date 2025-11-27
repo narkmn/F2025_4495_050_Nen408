@@ -5,14 +5,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "@/components/AuthContext";
 
 type Props = {
   items: { id: string; label: string; href: string }[]
 };
 
 export default function Navbar({ items }: Props) {
-  const user = useAuth();
+  const {user, enrolledCourseIds} = useAuth();
   if(user) console.log("Navbar.tsx username from context:", user.username);
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

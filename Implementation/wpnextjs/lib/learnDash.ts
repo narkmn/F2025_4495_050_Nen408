@@ -18,8 +18,6 @@ function buildUrl(endpoint: string, params: Record<string, string> = {}) {
   return url.toString();
 }
 
-
-
 export async function getCourses() {
   const url = buildUrl("/wp-json/ldlms/v2/sfwd-courses", {
     per_page: "100",

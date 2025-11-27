@@ -37,4 +37,6 @@ export type Course = {
       };
     }>;
   };
+  slug: string;
+  price: string;
 };
