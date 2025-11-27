@@ -22,7 +22,7 @@ export async function getCurrentUser() {
     }
 
     const user = await res.json();
-    // console.log("Current User:", user._links.courses[0].href);
+    // console.log("Current User:", user);
 
     return {
       id: user.id,

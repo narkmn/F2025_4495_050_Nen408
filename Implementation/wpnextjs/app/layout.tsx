@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Health Academy",
     description:
       "Evidence-based health and nutrition courses, powered by Health Academy.",
-    url: "https://your-frontend-domain.com",
+    url: "https://www.healthacademy.com",
     siteName: "Health Academy",
     type: "website",
   },

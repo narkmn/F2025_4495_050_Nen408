@@ -81,6 +81,7 @@ export default async function LessonPage({
     `${BASE}/sfwd-courses?slug=${slug}`,
     token
   );
+  console.log("Courses fetched for slug", slug, courses);
   const course = courses[0];
 
   if (!course) {
@@ -92,6 +93,7 @@ export default async function LessonPage({
     `${BASE}/sfwd-lessons?course=${course.id}&per_page=100`,
     token
   );
+  console.log(lessons);
 
   const activeLessonId = Number(lessonId);
   const activeLesson =
@@ -106,6 +108,7 @@ export default async function LessonPage({
     `${BASE}/sfwd-topic?course=${course.id}&per_page=100`,
     token
   );
+  console.log(allTopics);
 
   const topicsForActiveLesson = allTopics.filter((t) =>
     t.link?.includes(`/lessons/${activeLesson.slug}/`)

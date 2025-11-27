@@ -222,7 +222,12 @@ export default async function CourseDetailPage({
               <div
                 className="prose max-w-none"
                 dangerouslySetInnerHTML={{
-                  __html: course.content.rendered,
+                  __html: course.content.rendered.replace(/data-wp-interactive="[^"]*"/g, "")
+                      .replace(/data-wp-bind--hidden="[^"]*"/g, "")
+                      .replace(/\shidden/gi, "").replace(
+                        /<object([^>]*)>/g,
+                        `<object$1 style="width:100%;height:600px;">`
+                      ),
                 }}
               />
             </main>
