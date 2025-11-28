@@ -62,6 +62,8 @@ After cloning the repository
 
 cd F2025_4495_050_Nen408/Implementation/wpnextjs/
 
+npm install
+
 To test: npm run dev
 
 To build: npm run built
