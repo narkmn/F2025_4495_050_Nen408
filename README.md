@@ -1,34 +1,79 @@
-# ProjectNEn08_AINutiritionist
-CSIS 4450-05
+# Health Academy – Headless CMS (Next.js + WordPress + LearnDash)
 
-This is related to the course in developing AI chatbot in Wordpress website and improved UI in NextJS using Headless CMS technology. 
-The website is E-learning Management System powered by AI chatbot. 
+A modern Headless LMS platform using:
 
-## Getting Started
+WordPress — backend CMS + LearnDash + Users
 
-There are 2 main projects in this repo
- - /Implementation/healthacademy/
- - /Implementation/wpnextjs/
+Next.js (App Router) — frontend UI, SSR, middleware, components
 
-## healthacademy
+JWT Authentication — secure login with HttpOnly cookies
 
-It is main website built by wordpress. 
-cd /Implementation/healthacademy/
-cp /Implementation/healthacademy/ c:xamp/htdoc/
+REST API + LearnDash API — fetch courses, progress, lessons
 
-start xamp run server and mysql
+Vercel Deployment — fast hosting + global edge network
 
-go to localhost:
+🏗️ System Architecture
+WordPress CMS (Backend, LearnDash)<br>
+ ├─ REST API (wp-json/wp/v2)<br>
+ ├─ LearnDash API (wp-json/ldlms/v2)<br>
+ ├─ JWT Authentication (wp-json/jwt-auth/v1/token)<br>
+ └─ MySQL Database (not accessed directly)
 
-## NextJS
+Next.js Frontend (Vercel)<br>
+ ├─ Server Components (SSR)<br>
+ ├─ API Routes (/api/login, logout, me)<br>
+ ├─ AuthContext (client)<br>
+ ├─ Middleware (route protection)<br>
+ └─ Tailwind UI<br>
 
-cd /Implementation/wpnextjs/
+Browser (User)<br>
+ └─ Interacts ONLY with Next.js frontend
 
-npm install
+WordPress = Backend CMS
+Next.js = Frontend Application
 
-create .env file and setup your ENV variables
-This include WORDPRESS_BACKEND_URL, WORDPRESS_URL, WP_USER, WP_APP_PASSWORD, WP_API_URL, JWT_SECRET
+## Installation
+Install xamp and mysql. 
 
-npm run dev
-or 
-npm run built
+Install node 24.11.1 or later version 
+
+In bash terminal: 
+
+git clone https://github.com/narkmn/F2025_4495_050_Nen408.git 
+
+WordPress CMS (Backend) installation guide 
+
+cp -r F2025_4495_050_Nen408/Implementation/healthacademy C:\xampp\htdocs 
+
+Run xampp and start Apache and Mysql 
+
+Go to http://localhost/phpmyadmin/  
+
+Import database (The database is not provided due privacy, also WP files are not fully uploaded into github due to storage size) 
+
+Go to http://localhost/healthacademy 
+
+To migration to webserver please read wordpress documentation. 
+
+https://developer.wordpress.org/advanced-administration/upgrade/migrating/ 
+
+
+# Summary
+
+This repository contains a fully-featured Headless CMS using:
+
+WordPress (backend)
+
+Next.js (frontend)
+
+LearnDash (LMS)
+
+JWT Auth (secure login)
+
+REST API integration
+
+SSR/Middleware architecture
+
+Vercel (serverless Hosting)
+
+All UI and user experience are handled by Next.js, while WordPress remains the content + LMS backend.
