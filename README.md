@@ -37,7 +37,7 @@ Install xamp and mysql.
 
 Install node 24.11.1 or later version 
 
-In bash terminal: 
+### In bash terminal: 
 
 git clone https://github.com/narkmn/F2025_4495_050_Nen408.git 
 
@@ -57,6 +57,25 @@ To migration to webserver please read wordpress documentation.
 
 https://developer.wordpress.org/advanced-administration/upgrade/migrating/ 
 
+### NextJS front end
+After cloning the repository
+
+cd F2025_4495_050_Nen408/Implementation/wpnextjs/
+
+To test: npm run dev
+
+To build: npm run built
+
+To start: npm run start
+
+.env: (due to purpose of security, it is not uploaded in Github)
+
+to deploy on Vercel, please read documentation.
+https://vercel.com/docs/deployments
+
+### Test Deployment
+www.healthacademy.ca
+https://f2025-4495-050-nen408.vercel.app/
 
 # Summary
 
